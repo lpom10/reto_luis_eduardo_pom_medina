@@ -28,7 +28,8 @@ class DatabaseHelper {
             descripcion TEXT NOT NULL,
             lat REAL NOT NULL,
             lng REAL NOT NULL,
-            favorito INTEGER NOT NULL DEFAULT 0
+            favorito INTEGER NOT NULL DEFAULT 0,
+            categoria TEXT NOT NULL DEFAULT 'Turístico'
             -- TODO(feature): agrega la columna 'categoria TEXT'
           )
         ''');

@@ -5,6 +5,7 @@ class Lugar {
   double lat;
   double lng;
   bool favorito;
+  String categoria;
   // TODO(feature): agrega aquí el campo 'categoria' (String), por ejemplo
   // valores como "Turístico", "Académico", "Servicios".
 
@@ -15,6 +16,7 @@ class Lugar {
     required this.lat,
     required this.lng,
     this.favorito = false,
+    this.categoria = 'Turístico',
   });
 
   Map<String, dynamic> toMap() {
@@ -25,6 +27,7 @@ class Lugar {
       'lat': lat,
       'lng': lng,
       'favorito': favorito ? 1 : 0,
+      'categoria': categoria,
       // TODO(feature): incluye 'categoria' aquí también.
     };
   }
@@ -37,6 +40,7 @@ class Lugar {
       lat: map['lat'] as double,
       lng: map['lng'] as double,
       favorito: (map['favorito'] as int) == 1,
+      categoria: (map['categoria'] as String?) ?? 'Turístico',
       // TODO(feature): lee 'categoria' desde el map aquí también.
     );
   }

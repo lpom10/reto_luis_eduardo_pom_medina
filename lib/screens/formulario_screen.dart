@@ -15,6 +15,7 @@ class _FormularioScreenState extends State<FormularioScreen> {
   final _formKey = GlobalKey<FormState>();
   final _nombreCtrl = TextEditingController();
   final _descripcionCtrl = TextEditingController();
+  String _categoriaSeleccionada = 'Turístico';
 
   @override
   void dispose() {
@@ -30,6 +31,7 @@ class _FormularioScreenState extends State<FormularioScreen> {
         descripcion: _descripcionCtrl.text,
         lat: miLatBase,
         lng: miLngBase,
+        categoria: _categoriaSeleccionada,
       );
       await context.read<LugaresProvider>().agregarLugar(nuevoLugar);
       if (mounted) Navigator.pop(context);
@@ -57,6 +59,22 @@ class _FormularioScreenState extends State<FormularioScreen> {
                 decoration: const InputDecoration(labelText: 'Descripción'),
                 validator: (v) =>
                     (v == null || v.isEmpty) ? 'Ingresa una descripción' : null,
+              ),
+              DropdownButtonFormField<String>(
+                value: _categoriaSeleccionada,
+                decoration: const InputDecoration(labelText: 'Categoría'),
+                items: const [
+                  DropdownMenuItem(value: 'Turístico', child: Text('Turístico')),
+                  DropdownMenuItem(value: 'Académico', child: Text('Académico')),
+                  DropdownMenuItem(value: 'Servicios', child: Text('Servicios')),
+                ],
+                onChanged: (val) {
+                  if (val != null) {
+                    setState(() {
+                      _categoriaSeleccionada = val;
+                    });
+                  }
+                },
               ),
               // TODO(feature): agrega aquí un campo (TextFormField o
               // DropdownButtonFormField) para capturar la 'categoria'
